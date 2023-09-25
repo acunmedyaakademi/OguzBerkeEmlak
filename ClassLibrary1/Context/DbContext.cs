@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Emlak.DAL
 {
-    public class SqlDbContext : DbContext
+    public class DbContext : Microsoft.EntityFrameworkCore.DbContext
     {
-        public SqlDbContext(DbContextOptions<SqlDbContext> options) : base(options)
+        public DbContext(DbContextOptions<DbContext> options) : base(options)
         {
         }
 
