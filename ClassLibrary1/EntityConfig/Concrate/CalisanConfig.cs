@@ -7,24 +7,23 @@ namespace Emlak.DAL.EntityConfig.Concrete
 {
     public class CalisanConfig : BaseConfig<Calisan>
     {
+
+
+
         public override void Configure(EntityTypeBuilder<Calisan> builder)
         {
             base.Configure(builder);
-
-            // builder.ToTable("Calisan");
-
-            builder.HasKey(c => c.CalisanID); 
-            builder.Property(c => c.CalisanIsimSoyisim).IsRequired().HasMaxLength(100);
-            builder.Property(c => c.CalisanKullaniciAdi);
-            builder.Property(c => c.CalisanKullaniciSifre);
-            builder.Property(c => c.CalisanGSM).IsRequired().HasMaxLength(20);
-            builder.Property(c => c.CalisanGSM2).HasMaxLength(20);
-            builder.Property(c => c.CalisanMail);
-            builder.Property(c => c.CalisanMail2);
-            builder.Property(c => c.CalisanPortfoySayisi);
-            builder.Property(c => c.CalisanDurum);
-            
-
+           
+            builder.Property(c => c.IsimSoyisim).IsRequired().HasMaxLength(100);
+            builder.Property(c => c.KullaniciAdi);
+            builder.Property(c => c.KullaniciSifre);
+            builder.Property(c => c.GSM).IsRequired().HasMaxLength(20);
+            builder.Property(c => c.GSM2).HasMaxLength(20);
+            builder.Property(c => c.Mail);
+            builder.Property(c => c.Mail2);
+            builder.Property(c => c.PortfoySayisi);
+           
         }
     }
 }
+

@@ -1,20 +1,15 @@
-﻿using Emlak.Entities; 
+﻿using DAL.Repository.Abstract;
+using Emlak.Entities; 
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using static DAL.Repository.Abstract.IRepositoryBase;
 
 namespace Emlak.DAL.Repositories.Abstract
 {
-    public interface ICalisanRepository
+    public interface ICalisanRepository : IRepositoryBase<Calisan>
     {
-        Calisan GetById(int id);
-        IEnumerable<Calisan> GetAll();
-        IEnumerable<Calisan> Find(Expression<Func<Calisan, bool>> predicate);
-        void Add(Calisan entity);
-        void AddRange(IEnumerable<Calisan> entities);
-        void Update(Calisan entity);
-        void Remove(Calisan entity);
-        void RemoveRange(IEnumerable<Calisan> entities);
+     
 
     }
 }

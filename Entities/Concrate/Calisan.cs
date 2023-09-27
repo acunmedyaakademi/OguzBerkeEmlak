@@ -1,20 +1,22 @@
 ﻿using System;
 using Entites.Abstract;
+using Entities.Concrate;
 
 namespace Emlak.Entities
 {
     public class Calisan : BaseEntity
     {
-        public int CalisanID { get; set; }
-        public string CalisanIsimSoyisim { get; set; }
-        public string CalisanKullaniciAdi { get; set; }
-        public string CalisanKullaniciSifre { get; set; }
-        public string CalisanGSM { get; set; }
-        public string CalisanGSM2 { get; set; }
-        public string CalisanMail { get; set; }
-        public string CalisanMail2 { get; set; }
-        public int CalisanPortfoySayisi { get; set; }
-        public int CalisanDurum { get; set; }
-        
+       
+        public string? IsimSoyisim { get; set; }
+        public string? KullaniciAdi { get; set; }
+        public string? KullaniciSifre { get; set; }
+        public string? GSM { get; set; }
+        public string? GSM2 { get; set; }
+        public string? Mail { get; set; }
+        public string? Mail2 { get; set; }
+        public int? PortfoySayisi { get; set; }
+        public int? RoleId { get; set; }
+        public Role  Role { get; set; }
+
     }
 }
