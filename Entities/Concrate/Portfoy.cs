@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Entites.Abstract;
+using System;
 
 namespace Emlak.Entities
 {
-    public class Portfoy
+    public class Portfoy : BaseEntity
     {
         public int PortfoyID { get; set; }
         public string PortfoyTipi { get; set; }

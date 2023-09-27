@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Emlak.DAL.EntityConfig.Concrete
 {
-    public class PortfoyConfig : BaseConfigDAL<Portfoy>
+    public class PortfoyConfig : BaseConfig<Portfoy>
     {
         public override void Configure(EntityTypeBuilder<Portfoy> builder)
         {
@@ -28,7 +28,6 @@ namespace Emlak.DAL.EntityConfig.Concrete
             //        .HasForeignKey(p => p.PortfoySahibiID)
             //        .IsRequired();
 
-            // Diğer yapılandırmaları ekleyebilirsiniz
         }
     }
 }

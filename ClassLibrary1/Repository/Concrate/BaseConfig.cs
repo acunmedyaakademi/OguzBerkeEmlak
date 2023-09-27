@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Emlak.DAL.EntityConfig.Abstract
 {
-    public abstract class BaseConfigDAL<TEntity> : IBaseConfig where TEntity : class
+    public abstract class BaseConfig<TEntity> : IBaseConfig where TEntity : class
     {
         public virtual void Configure(ModelBuilder modelBuilder)
         {
