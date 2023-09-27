@@ -46,7 +46,7 @@ namespace Emlak.WebUI.Controllers
                 return View("Index");
             }
 
-            return RedirectToAction("Dashboard", "Home");
+            return RedirectToAction("Dashboard", "Profilim");
         }
     }
 }
