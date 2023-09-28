@@ -1,0 +1,63 @@
+﻿@page
+@model IEnumerable<Emlak.Entities.Portfoy> 
+
+<h2>Portfoyum</h2>
+
+<!-- Arama ve filtreleme alanı -->
+<div>
+    <form method="get">
+        <div class="form-group">
+            <input type="text" name="searchString" placeholder="Arama yap..." class="form-control" />
+        </div>
+        <div class="form-group">
+            <select name="option" class="form-control">
+                <option value="">Tüm Seçenekler</option>
+                
+            </select>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Ara</button>
+        </div>
+    </form>
+</div>
+
+<!-- Portfoy listesi -->
+<table class="table">
+    <thead>
+        <tr>
+            <th>Portfoy Adı</th>
+            <th>Özellikler</th>
+            <th>M²</th>
+            <th>Detay</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var portfoy in Model)
+        {
+            <tr>
+                <td>@portfoy.PortfoyID</td>
+                <td>@portfoy.PortfoyTipi</td>
+                <td>@portfoy.MetrekareAlan</td>
+                <td><a asp-controller="Portfoy" asp-action="Detaylar" asp-route-id="@portfoy.PortfoyID">Detay</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Sayfalama işlemi -->
+<div class="pagination">
+   @*  @if ()<!--sor-->
+    {
+        <a asp-controller="Portfoy" asp-action="Index" asp-route-page="1"><<</a>
+        <a asp-controller="Portfoy" asp-action="Index" asp-route-page="@Model.PageIndex-1"><</a>
+    }
+    @for (var i = 1; i <= Model.TotalPages; i++)
+    {
+        <a asp-controller="Portfoy" asp-action="Index" asp-route-page="@i">@i</a>
+    }
+    @if (Model.HasNextPage)
+    {
+        <a asp-controller="Portfoy" asp-action="Index" asp-route-page="@Model.PageIndex+1">></a>
+        <a asp-controller="Portfoy" asp-action="Index" asp-route-page="@Model.TotalPages">>></a>
+    } *@
+</div>

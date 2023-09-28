@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Çalışan Yönetimi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Çalışan Yönetimi</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Yeni Çalışan Ekle</a>
+</p>
+
+<form asp-action="Index" method="get">
+    <div class="form-group">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Çalışan Adı veya Soyadı" name="searchString" />
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-outline-secondary">Ara</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Adı Soyadı</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var calisan in Model)
+        {
+            <tr>
+                <td>@calisan.IsimSoyisim</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@calisan.ID">Düzenle</a> |
+                    <a asp-action="Delete" asp-route-id="@calisan.ID">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
