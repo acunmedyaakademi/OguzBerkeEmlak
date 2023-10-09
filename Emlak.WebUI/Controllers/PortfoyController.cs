@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Emlak.DAL;
 using Emlak.Entities;
+using Emlak.WebUI.Extensions; 
 using System.Collections.Generic;
 using System.Linq;
 
@@ -35,20 +36,16 @@ namespace Emlak.WebUI.Controllers
             }
 
             int pageSize = 10;
-            var paginatedPortfoyler = kullaniciPortfoyler
-                .OrderBy(p => p.ID)
-                .Skip((page - 1) * pageSize)
-                .Take(pageSize)
-                .ToList();
+            var pagedPortfoyler = kullaniciPortfoyler.GetPaged(page, pageSize); 
 
             var model = new
             {
-                Portfoyler = paginatedPortfoyler,
-                CurrentPage = page,
-                TotalPages = (int)Math.Ceiling((double)kullaniciPortfoyler.Count() / pageSize),
+                Portfoyler = pagedPortfoyler.Results,
+                CurrentPage = pagedPortfoyler.CurrentPage,
+                TotalPages = pagedPortfoyler.PageCount,
                 SearchString = searchString,
                 SelectedOption = selectedOption,
-                OptionList = GetPortfoyOptions() 
+                OptionList = GetPortfoyOptions()
             };
 
             return View(model);

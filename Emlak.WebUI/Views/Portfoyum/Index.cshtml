@@ -1,5 +1,5 @@
 ﻿@page
-@model IEnumerable<Emlak.Entities.Portfoy> 
+@model Emlak.WebUI.Extensions.PagedResult<Emlak.Entities.Portfoy>
 
 <h2>Portfoyum</h2>
 
@@ -12,7 +12,6 @@
         <div class="form-group">
             <select name="option" class="form-control">
                 <option value="">Tüm Seçenekler</option>
-                
             </select>
         </div>
         <div class="form-group">
@@ -32,7 +31,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var portfoy in Model)
+        @foreach (var portfoy in Model.Results)
         {
             <tr>
                 <td>@portfoy.PortfoyID</td>
@@ -46,18 +45,18 @@
 
 <!-- Sayfalama işlemi -->
 <div class="pagination">
-   @*  @if ()<!--sor-->
+    @if (Model.CurrentPage > 1)
     {
-        <a asp-controller="Portfoy" asp-action="Index" asp-route-page="1"><<</a>
-        <a asp-controller="Portfoy" asp-action="Index" asp-route-page="@Model.PageIndex-1"><</a>
+        <a asp-controller="Portfoyum" asp-action="Index" asp-route-page="1"></a>
+        <a asp-controller="Portfoyum" asp-action="Index" asp-route-page="@(Model.CurrentPage - 1)"></a>
     }
-    @for (var i = 1; i <= Model.TotalPages; i++)
+    @for (var i = 1; i <= Model.PageCount; i++)
     {
-        <a asp-controller="Portfoy" asp-action="Index" asp-route-page="@i">@i</a>
+        <a asp-controller="Portfoyum" asp-action="Index" asp-route-page="@i">@i</a>
     }
-    @if (Model.HasNextPage)
+    @if (Model.CurrentPage < Model.PageCount)
     {
-        <a asp-controller="Portfoy" asp-action="Index" asp-route-page="@Model.PageIndex+1">></a>
-        <a asp-controller="Portfoy" asp-action="Index" asp-route-page="@Model.TotalPages">>></a>
-    } *@
+        <a asp-controller="Portfoyum" asp-action="Index" asp-route-page="@(Model.CurrentPage + 1)">></a>
+        <a asp-controller="Portfoyum" asp-action="Index" asp-route-page="@Model.PageCount">>></a>
+    }
 </div>
