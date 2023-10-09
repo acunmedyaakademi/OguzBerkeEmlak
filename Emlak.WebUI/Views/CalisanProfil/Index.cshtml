@@ -38,15 +38,15 @@
     </div>
     <div class="form-group">
         <label for="Telefon2">Telefon Numarası 2:</label>
-        <input type="text" class="form-control" id="Telefon2" name="Telefon2" value="@Model.GSM2">
+        <input class="form-control" asp-for="GSM2" value="@Model.GSM2">
     </div>
     <div class="form-group">
         <label for="Email">E-posta:</label>
-        <input type="email" class="form-control" id="Email" name="Email" value="@Model.Mail">
+        <input class="form-control" asp-for="Mail" value="@Model.Mail">
     </div>
     <div class="form-group">
         <label for="Email2">E-posta 2:</label>
-        <input type="email" class="form-control" id="Email2" name="Email2" value="@Model.Mail2">
+        <input class="form-control" asp-for="Mail2" value="@Model.Mail2">
     </div>
     <button type="submit" class="btn btn-primary">Güncelle</button>
 </form>

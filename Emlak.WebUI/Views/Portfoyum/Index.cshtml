@@ -1,63 +1,59 @@
 ﻿@page
-@model IEnumerable<Emlak.Entities.Portfoy> 
+@model Portfoy
 
-<h2>Portfoyum</h2>
+@{
+    ViewData["Title"] = "Portföylerim";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
-<!-- Arama ve filtreleme alanı -->
+<h2>Portföylerim</h2>
 <div>
-    <form method="get">
-        <div class="form-group">
-            <input type="text" name="searchString" placeholder="Arama yap..." class="form-control" />
-        </div>
-        <div class="form-group">
-            <select name="option" class="form-control">
-                <option value="">Tüm Seçenekler</option>
-                
-            </select>
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary">Ara</button>
-        </div>
-    </form>
+    <p>Portföy Tipi = <span asp-for="PortfoyTipi"></span></p>
+    <p>Portföy Adresi = <span asp-for="PortfoyAdres"></span></p>
+    <p>M² = <span asp-for="MetrekareAlan"></span></p>
+    <p>Portföy Durumu = <span asp-for="PortfoyDurumu"></span></p>
+    <p>Tutarı = <span asp-for="PortfoyTutar"></span></p>
+    <p>Açıklama = <span asp-for="PortfoyAciklama"></span></p>
 </div>
 
-<!-- Portfoy listesi -->
-<table class="table">
-    <thead>
-        <tr>
-            <th>Portfoy Adı</th>
-            <th>Özellikler</th>
-            <th>M²</th>
-            <th>Detay</th>
-        </tr>
-    </thead>
+<button type="button" id="showUpdateForm">Bilgileri Güncelle</button>
+
+<form asp-controller="PortfoyumController" asp-action="NewProtfoy" method="post" style="display: none;">
+    <input type="hidden" asp-for="ID" />
+    <div class="form-group">
+        <label for="PortfoyTipi">Portfoy Tipi:</label>
+        <input class="form-control" asp-for="PortfoyTipi" value="@Model.PortfoyTipi">
+    </div>
+    <div class="form-group">
+        <label for="PortfoyAdresi">PortfoyAdresi:</label>
+        <input class="form-control" asp-for="PortfoyAdres" value="@Model.PortfoyAdres">
+    </div>
+    <div class="form-group">
+        <label for="PortfoyAlan">M²:</label>
+        <input class="form-control" asp-for="MetrekareAlan" value="@Model.MetrekareAlan">
+    </div>
+    <div class="form-group">
+        <label for="PortfoyDurumu">Portfoy Durumu:</label>
+        <input class="form-control" asp-for="PortfoyDurumu" value="@Model.PortfoyDurumu">
+    </div>
+    <div class="form-group">
+        <label for="Tutar">Tutarı:</label>
+        <input class="form-control" asp-for="PortfoyTutar" value="@Model.PortfoyTutar">
+    </div>
+    <button type="submit" class="btn btn-primary">Güncelle</button>
+</form>
     <tbody>
-        @foreach (var portfoy in Model)
-        {
-            <tr>
-                <td>@portfoy.PortfoyID</td>
-                <td>@portfoy.PortfoyTipi</td>
-                <td>@portfoy.MetrekareAlan</td>
-                <td><a asp-controller="Portfoy" asp-action="Detaylar" asp-route-id="@portfoy.PortfoyID">Detay</a></td>
-            </tr>
-        }
+        <tr>
+            <td><span asp-for="PortfoyTipi"></span></td>
+            <td><span asp-for="PortfoyAdres"></span></td>
+            <td><span asp-for="MetrekareAlan"></span></td>
+            <td><span asp-for="PortfoyDurumu"></span></td>
+            <td><span asp-for="PortfoyTutar"></span></td>
+            <td><span asp-for="PortfoyAciklama"></span></td>
+            <td>
+                <a asp-controller="Portfoyum" asp-action="Edit" asp-route-id="@Model.PortfoyID">Düzenle</a> |
+                <a asp-controller="Portfoyum" asp-action="Delete" asp-route-id="@Model.PortfoyID">Sil</a>
+            </td>
+        </tr>
     </tbody>
 </table>
-
-<!-- Sayfalama işlemi -->
-<div class="pagination">
-   @*  @if ()<!--sor-->
-    {
-        <a asp-controller="Portfoy" asp-action="Index" asp-route-page="1"><<</a>
-        <a asp-controller="Portfoy" asp-action="Index" asp-route-page="@Model.PageIndex-1"><</a>
-    }
-    @for (var i = 1; i <= Model.TotalPages; i++)
-    {
-        <a asp-controller="Portfoy" asp-action="Index" asp-route-page="@i">@i</a>
-    }
-    @if (Model.HasNextPage)
-    {
-        <a asp-controller="Portfoy" asp-action="Index" asp-route-page="@Model.PageIndex+1">></a>
-        <a asp-controller="Portfoy" asp-action="Index" asp-route-page="@Model.TotalPages">>></a>
-    } *@
-</div>
