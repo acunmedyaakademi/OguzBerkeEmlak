@@ -1,42 +1,54 @@
-﻿@{
-    ViewData["Title"] = "Çalışan Yönetimi";
+﻿@page
+@model dynamic
+
+@{
+    ViewData["Title"] = "Yönetim";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Çalışan Yönetimi</h2>
+<h2>Yönetim</h2>
 
-<p>
-    <a asp-action="Create" class="btn btn-primary">Yeni Çalışan Ekle</a>
-</p>
+@if (Model.RoleID == 1)
+{
+    <p>Yönetici Paneline Hoş Geldiniz!</p>
 
-<form asp-action="Index" method="get">
-    <div class="form-group">
-        <div class="input-group">
-            <input type="text" class="form-control" placeholder="Çalışan Adı veya Soyadı" name="searchString" />
-            <div class="input-group-append">
-                <button type="submit" class="btn btn-outline-secondary">Ara</button>
+    <p>
+        <a asp-action="Create" class="btn btn-primary">Yeni Çalışan Ekle</a>
+    </p>
+
+    <form asp-action="Index" method="get">
+        <div class="form-group">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Çalışan Adı veya Soyadı" name="searchString" />
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-outline-secondary">Ara</button>
+                </div>
             </div>
         </div>
-    </div>
-</form>
+    </form>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Adı Soyadı</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var calisan in Model)
-        {
+    <table class="table">
+        <thead>
             <tr>
-                <td>@calisan.IsimSoyisim</td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@calisan.ID">Düzenle</a> |
-                    <a asp-action="Delete" asp-route-id="@calisan.ID">Sil</a>
-                </td>
+                <th>Adı Soyadı</th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var calisan in Model.Calisanlar)
+            {
+                <tr>
+                    <td>@calisan.IsimSoyisim</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@calisan.ID">Düzenle</a> |
+                        <a asp-action="Delete" asp-route-id="@calisan.ID">Sil</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Yetkiniz Bulunmamaktadır.</p>
+}
